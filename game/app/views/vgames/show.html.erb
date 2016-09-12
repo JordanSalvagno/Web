@@ -1,0 +1,110 @@
+<%= javascript_include_tag "assets/javascripts/show"%>
+<title><%=@vgame.name%></title>
+<body>
+<p id = "info""">
+<div id = image>
+<%if @exist%>
+    <%= image_tag(root_url + "/games/" + @vgame.fname, size: "200x200", alt: @vgame.fname)%>
+  <%else%>
+    <%= image_tag(root_url+"/games/default.jpg", size: "100x100", alt: "default.jpg")%>
+  <%end%>
+</div>
+<br>
+<br>
+<p>
+<%= @vgame.name %>
+</p>
+<p>
+<%@vgame_platforms.each do |vgame_platform|%>
+  <%=vgame_platform.platform.name%>
+<%end%>
+</p>
+<%= "Developed by #{@vgame.developer}"%>
+<br>
+<br>
+<%= @vgame.release.strftime("released on %m/%d/%Y")%>
+<br>
+<br>
+<br>
+</p>
+<div id= "tabs">
+<ul>
+  <li><a href="#tabs-1">Info</a></li>
+  <li><a href="#tabs-2">Reviews</a></li>
+  <li><a href="#tabs-3">Guides</a></li>
+  <li><a href="#tabs-4">Forums</a></li>
+</ul>
+<div id = "tabs-1">
+  <p>
+  <%= @vgame.description %>
+  <p>
+</div>
+<div id = "tabs-2">
+  <table>
+    <% @reviews.each do |review| %>
+      <tr>
+      <td><%=link_to review.title, review%></td>
+      <td><%=review.user.name%></td>
+      <td><%= (review.updated_at.in_time_zone("Pacific Time (US & Canada)")).to_time.strftime('%B %e at %l:%M %p')%></td>
+      <%if (current_user == review.user || @admin)%>
+        <td><%=link_to 'Edit', edit_review_path(review)%> </td>
+        <td><%=link_to 'Remove', review, method: :delete, data: {confirm: 'Are You Sure?'}%></td>
+    <%end%>
+    </tr>
+  <%end%>
+    <%if user_signed_in? %>
+      <tr>
+      <td><%=link_to 'Create New Review', new_vgame_review_path(@vgame)%>
+    </tr>
+    <%end%>
+    </table>
+  </div>
+  <div id = "tabs-3">
+    <table>
+      <% @guides.each do |guide| %>
+        <tr>
+        <td><%=link_to guide.title, guide%></td>
+        <td><%=guide.user.name%></td>
+        <td><%=(guide.updated_at.in_time_zone("Pacific Time (US & Canada)")).to_time.strftime('%B %e at %l:%M %p')%></td>
+      <%if (current_user == guide.user || @admin)%>
+        <td><%=link_to 'Edit', edit_guide_path(guide)%> </td>
+        <td><%=link_to 'Remove', guide, method: :delete, data: {confirm: 'Are You Sure?'}%></td>
+    <%end%>
+      </tr>
+    <%end%>
+      <%if user_signed_in? %>
+        <tr>
+        <td><%=link_to 'Create New Guide', new_vgame_guide_path(@vgame)%>
+      </tr>
+      <%end%>
+      </table>
+    </div>
+    <div id = "tabs-4">
+      <table>
+        <% @topics.each do |topic| %>
+          <tr>
+          <td><%=link_to topic.title, topic%></td>
+          <td><%=topic.user.name%></td>
+          <td><%=(topic.updated_at.in_time_zone("Pacific Time (US & Canada)")).to_time.strftime('%B %e at %l:%M %p')%></td>
+      <%if (current_user == topic.user || @admin)%>
+        <td><%=link_to 'Edit', edit_topic_path(topic)%> </td>
+        <td><%=link_to 'Remove', topic, method: :delete, data: {confirm: 'Are You Sure?'}%></td>
+        </tr>
+    <%end%>
+      <%end%>
+        <%if user_signed_in? %>
+          <tr>
+          <td><%=link_to 'Create New Forum Topic', new_vgame_topic_path(@vgame)%>
+        </tr>
+        <%end%>
+      </table>
+</div>
+      <%if (@admin)%>
+        <p>Add Platforms</p>
+         <%=render "vgame_platforms/form"%>
+        <%=link_to 'Edit this game', edit_vgame_path(@vgame)%> </td>
+      <%=link_to 'Remove this game', @vgame, method: :delete, data: {confirm: 'Are You Sure?'}%></td>
+  <%end%>
+</div>
+      </body>
+

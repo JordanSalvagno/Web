@@ -1,0 +1,10 @@
+<h2>Edit <%=@vgame.name%></h2>
+<%= render 'form' %>
+<br>
+<b>Remove Platform</b>
+<ul>
+  <% @vgame.vgame_platforms.each do |vplat|%>
+  <li> <%= link_to vplat.platform.name, vplat, method: :delete, data: {confirm: 'Are you sure?'}%></li>
+<%end%>
+  </ul>
+<%= link_to "Back to #{@vgame.name}", @vgame %> 

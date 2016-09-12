@@ -1,0 +1,21 @@
+<%= form_for([@vgame, @topic]) do |f| %>
+  <%if @topic.errors.any?%>
+        <div id = "error_explanation">
+        <h2>%= pluralize(@tag.errors.count, "error") %> prohibited this topic from being saved:</h2>
+        <ul>
+          <% @topic.errors.full_messages.each do |message| %>
+            <li><%=message%></li>
+        <%end%>
+        </ul>
+      </div>
+    <%end%>
+      <br>
+      <div class="field">
+        <%= f.label :title%>
+        <%= f.text_field :title, class: 'textbox'%>
+      </div>
+      <br>
+      <div class="actions">
+        <%= f.submit class: 'mybutton' %>
+      </div>
+    <%end%>

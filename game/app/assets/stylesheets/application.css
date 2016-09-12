@@ -1,0 +1,110 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require jquery-ui
+ *= require_tree .
+ *= require_self
+ */
+
+h1
+{
+  display: block;
+  height: 70px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #000000;
+  border: solid black;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h2
+{
+  display: block;
+  height: 20px;
+  width: 450px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #000000;
+  padding: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: left;
+}
+#menu {
+  width:200px;
+  float: left;
+}
+
+
+table.forum{
+  border-collapse: collapse;
+  border: 2px solid black;
+  width: 100%;
+  padding: 10px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+td.post{
+  text-align: left;
+  padding: 8px;
+  border: 2px solid black;
+}
+
+th.post{
+  background-color: #000000;
+  color: white;
+  text-align: left;
+  border: 2px solid black;
+}
+
+.ui-menu-item:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0688fa), color-stop(1, #2dabf9));
+  background:-moz-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+  background:-webkit-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+  background:-o-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+  background:-ms-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+  background:linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0688fa', endColorstr='#2dabf9',GradientType=0);
+  background-color:#0688fa;
+}
+
+#image 
+{
+  float: left;
+  margin: 0px 30px 0px 30px;
+}
+
+#showlinks
+{
+  position: absolute;
+  bottom: 150px;
+  left: 620px;
+}
+
+#user_nav
+{
+  position: absolute;
+  top:  0;
+  right: 50;
+}
+
+#footer
+{
+  position: absolute;
+  bottom: 0px;
+  left: 50px;
+}

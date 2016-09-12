@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  fname: MyString
+  user_id: 
+  vgame_id: 
+
+two:
+  title: MyString
+  fname: MyString
+  user_id: 
+  vgame_id: 

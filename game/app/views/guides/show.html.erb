@@ -1,0 +1,8 @@
+<h2><%="#{@guide.title} by #{@guide.user.name}"%></h2>
+<h3>Last edited on <%=(@guide.updated_at.in_time_zone("Pacific Time (US & Canada)")).to_time.strftime('%B %e at %l:%M %p')%></h3>
+<body>
+<div id = "guide">
+ <%=simple_format h(render :file => (Rails.root.join('public', 'guides', @guide.fname)))%>
+</div>
+</body>
+<p><%=link_to "Back to #{@guide.vgame.name}", @guide.vgame%></p>

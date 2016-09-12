@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Game</title>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
+</head>
+<body>
+<div id="user_nav">
+  <table>
+    <tr>
+  <% if user_signed_in? %>
+    <td><%= link_to "Sign out", destroy_user_session_path, method: :delete %></td>
+<% else %>
+  <td><%= link_to "Sign up", new_user_registration_path %></td>
+  <td><%= link_to "Sign in", new_user_session_path %></td>
+  <% end %>
+  <td><%= link_to "All Games", vgames_path%></td>
+<% if user_signed_in? %>
+  <td>Signed in as <%= current_user.email %></td>
+    <%if @admin%>
+      <td><b>admin privileges granted</b></td>
+    <%end%>
+  <%end%>
+</tr>
+</table>
+</div>
+
+<h1>Game</h1>
+<%= yield %>
+
+<p class= "notice"><%= notice %></p>
+<p class= "alert"><%= alert %></p>
+</body>
+</html>

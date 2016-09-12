@@ -1,0 +1,23 @@
+<%= form_for([@vgame, @vgame_platform]) do |f| %>
+  <% if @vgame_platform.errors.any? %>
+  <div id= "error_explanation">
+  <h2><%= pluralize(@vgame_platform.errors.count, "error") %> prohibited this tag from being saved:</h2>
+
+  <ul>
+    <% @vgame_platform.errors.full_messages.each do |message| %>
+      <li><%=message%></li>
+  <%end%>
+  </ul>
+</div>
+  <%end%>
+<br>
+<div class="field">
+  <select name="platform_id">
+    <%= @platforms.each do |platform| %>
+      <option value="<%=platform.id%>"><%="#{platform.name}"%></option>
+    <%end%>
+  </select>
+  <%=f.submit class: 'myButton' %>
+</div>
+<%end%>
+

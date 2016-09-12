@@ -1,0 +1,45 @@
+<%= form_for(@vgame) do |f| %>
+  <%if @vgame.errors.any?%>
+        <div id = "error_explanation">
+        <h2>%= pluralize(@vgame.errors.count, "error") %> prohibited this vgame from being saved:</h2>
+        <ul>
+          <% @vgame.errors.full_messages.each do |message| %>
+            <li><%=message%></li>
+        <%end%>
+        </ul>
+      </div>
+    <%end%>
+      <br>
+      <div class="field">
+        <%= f.file_field :uploaded_file, class: 'myButton'%>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :name%>
+        <%= f.text_field :name, class: 'textbox'%>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :genre%>
+        <%= f.text_field :genre, class: 'textbox'%>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :developer%>
+        <%= f.text_field :developer, class: 'textbox'%>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :release%>
+        <%= f.date_field :release, class: 'datebox'%>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :description%>
+        <%= f.text_area :description, size: "150x10", class: 'textbox'%>
+      </div>
+      <br>
+      <div class="actions">
+        <%= f.submit class: 'mybutton' %>
+      </div>
+    <%end%>

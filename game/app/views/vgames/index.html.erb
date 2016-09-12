@@ -1,0 +1,37 @@
+<% x = 2%>
+  <div id = "tabs">
+<ul>
+  <li><a href= "#tabs-1">all</a></li>
+  <% @platforms.each do |platform|%>
+    <li><a href= <%="#tabs-#{x}"%>><%=platform.name%></a></li>
+    <% x = x+1%>
+  <%end%>
+</ul>
+<div id = "tabs-1">  
+<table id = "games">
+  <% @vgames.each do |vgame| %>
+  <tr>
+    <td><%=link_to vgame.name, vgame%></td>
+  </tr>
+<%end%>
+</table>
+</div>
+<% x = 2%>
+<%@platforms.each do |platform|%>
+  <div id = <%="tabs-#{x}"%>>  
+    <% x = x+1 %>
+<table id = "games">
+  <% platform.vgame_platforms.each do |vgame_platform| %>
+  <tr>
+    <td><%=link_to vgame_platform.vgame.name, vgame_platform.vgame%></td>
+  </tr>
+<%end%>
+</table>
+</div>
+<%end%>
+<br>
+</div>
+<%if @admin%>
+  <%= link_to 'Add a Game', new_vgame_path %>
+<%end%>
+

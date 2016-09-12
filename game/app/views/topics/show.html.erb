@@ -1,0 +1,28 @@
+<h2><%=@topic.title%></h2>
+<body>
+<div id = "posts">
+    <%@posts.each do |post| %>
+     <table class = "forum">
+      <tr>
+      <th class = "post"><%=post.user.name%></td>
+      <th class = "post"><%=(post.updated_at.in_time_zone("Pacific Time (US & Canada)")).to_time.strftime('%B %e at %l: %M %p')%></td>
+    </tr>
+    <tr>
+      <td class = "post", colspan = 2><%=simple_format h(post.message)%></td>
+    </tr>
+    <%if current_user == post.user || @admin%>
+      <tr>
+        <td class = "post", colspan = 2><%= link_to "Edit", edit_post_path(post)%> <%= link_to "Remove", post, method: :delete, data: {confirm: 'Are You Sure?'}%></td>
+    </tr>
+  <%end%>
+</table>
+<br>
+  <%end%>
+  <%if user_signed_in?%>
+    <p>New Post</p>
+  <div id = createpost>
+    <%=render 'posts/form'%>
+  </div>
+<%end%>
+  <%=link_to "Back To #{@topic.vgame.name}", @topic.vgame %>
+  </body>
